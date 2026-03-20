@@ -1,0 +1,20 @@
+{
+  "name": "@les-chauffagistes/pool-api-types",
+  "version": "0.1.0",
+  "description": "Generated types from OpenAPI schema",
+  "license": "UNLICENSED",
+
+  "types": "src/types.ts",
+
+  "files": [
+    "src/types.ts"
+  ],
+
+  "scripts": {
+    "build": "echo \"no build step\""
+  },
+
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

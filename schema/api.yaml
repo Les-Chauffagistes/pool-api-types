@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: Chauffagistes Dashboard Models
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    BestRecord:
+      type: object
+      additionalProperties: false
+      required:
+        - month
+        - sdiff
+        - username
+        - epoch
+      properties:
+        month:
+          type: string
+        sdiff:
+          type: string
+        username:
+          type: string
+        epoch:
+          type: string
+    Hashrates:
+      type: object
+      additionalProperties: false
+      required:
+        - hashrate1m
+        - hashrate5m
+        - hashrate1hr
+        - hashrate1d
+        - hashrate7d
+      properties:
+        hashrate1m:
+          type: string
+        hashrate5m:
+          type: string
+        hashrate1hr:
+          type: string
+        hashrate1d:
+          type: string
+        hashrate7d:
+          type: string
+    Node:
+      type: object
+      additionalProperties: false
+      required:
+        - height
+        - subversion
+        - peers
+      properties:
+        height:
+          type: number
+        subversion:
+          type: string
+        peers:
+          type: number
+    NumberHashrate:
+      type: object
+      additionalProperties: false
+      required:
+        - hashrate1m
+        - hashrate5m
+        - hashrate1hr
+        - hashrate1d
+        - hashrate7d
+      properties:
+        hashrate1m:
+          type: number
+        hashrate5m:
+          type: number
+        hashrate1hr:
+          type: number
+        hashrate1d:
+          type: number
+        hashrate7d:
+          type: number
+    Pool:
+      type: object
+      additionalProperties: false
+      required:
+        - runtime
+        - hashrate
+        - shares
+      properties:
+        runtime:
+          $ref: '#/components/schemas/PoolRuntime'
+        hashrate:
+          $ref: '#/components/schemas/PoolHashrates'
+        shares:
+          $ref: '#/components/schemas/PoolShares'
+    PoolHashrates:
+      allOf:
+        - $ref: '#/components/schemas/Hashrates'
+        - type: object
+          additionalProperties: false
+          required:
+            - hashrate15m
+            - hashrate6hr
+          properties:
+            hashrate15m:
+              type: string
+            hashrate6hr:
+              type: string
+    PoolRuntime:
+      type: object
+      additionalProperties: false
+      required:
+        - runtime
+        - lastupdate
+        - Users
+        - Workers
+        - Idle
+        - Disconnected
+      properties:
+        runtime:
+          type: number
+        lastupdate:
+          type: string
+        Users:
+          type: number
+        Workers:
+          type: number
+        Idle:
+          type: number
+        Disconnected:
+          type: number
+    PoolShares:
+      type: object
+      additionalProperties: false
+      required:
+        - diff
+        - accepted
+        - rejected
+        - bestshare
+        - SPS1m
+        - SPS5m
+        - SPS15m
+        - SPS1h
+      properties:
+        diff:
+          type: number
+        accepted:
+          type: number
+        rejected:
+          type: number
+        bestshare:
+          type: number
+        SPS1m:
+          type: number
+        SPS5m:
+          type: number
+        SPS15m:
+          type: number
+        SPS1h:
+          type: number
+    Repartition:
+      type: object
+      additionalProperties: false
+      required:
+        - shares
+        - total_vardiff
+        - weight
+        - percentage
+      properties:
+        shares:
+          type: number
+        total_vardiff:
+          type: number
+        weight:
+          type: number
+        percentage:
+          type: number
+    User:
+      allOf:
+        - $ref: '#/components/schemas/Hashrates'
+        - type: object
+          additionalProperties: false
+          required:
+            - lastshare
+            - workers
+            - shares
+            - bestshare
+            - bestever
+            - authorized
+            - worker
+          properties:
+            lastshare:
+              type: number
+            workers:
+              type: number
+            shares:
+              type: number
+            bestshare:
+              type: number
+            bestever:
+              type: number
+            authorized:
+              type: number
+            worker:
+              type: array
+              items:
+                $ref: '#/components/schemas/Worker'
+    Worker:
+      allOf:
+        - $ref: '#/components/schemas/Hashrates'
+        - type: object
+          additionalProperties: false
+          required:
+            - workername
+            - lastshare
+            - shares
+            - bestshare
+            - bestever
+          properties:
+            workername:
+              type: string
+            lastshare:
+              type: string
+            shares:
+              type: number
+            bestshare:
+              type: number
+            bestever:
+              type: number
