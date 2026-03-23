@@ -110,6 +110,14 @@ jobs:
           git tag $VERSION
           git push origin $VERSION
 
+      - name: Create release
+        if: steps.tag_check.outputs.skip != 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          files: |
+            python/dist/*
+
       - name: Publish Python package
         if: steps.tag_check.outputs.skip != 'true'
         run: |
@@ -120,11 +128,3 @@ jobs:
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-
-      - name: Create release
-        if: steps.tag_check.outputs.skip != 'true'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ env.VERSION }}
-          files: |
-            python/dist/*
