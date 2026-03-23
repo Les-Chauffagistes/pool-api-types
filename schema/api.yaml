@@ -5,6 +5,34 @@ info:
 paths: {}
 components:
   schemas:
+    APIDataPayload:
+      type: object
+      properties:
+        backup_pool:
+          type: boolean
+        pool:
+          $ref: "#/components/schemas/Pool"
+        users:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/User"
+        repartition:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/Repartition"
+        monthly_bests:
+          type: array
+          items:
+            $ref: "#/components/schemas/BestRecord"
+        node:
+          $ref: "#/components/schemas/Node"
+      required:
+        - backup_pool
+        - pool
+        - users
+        - repartition
+        - monthly_bests
+        - node
     BestRecord:
       type: object
       additionalProperties: false
