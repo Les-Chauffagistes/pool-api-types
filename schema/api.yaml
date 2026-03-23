@@ -252,3 +252,66 @@ components:
               type: number
             bestever:
               type: number
+    Share:
+      type: object
+      properties:
+        workinfoid:
+          type: integer
+        clientid:
+          type: integer
+        diff:
+          type: integer
+        sdiff:
+          type: number
+          format: float
+        hash:
+          type: string
+        result:
+          type: boolean
+        errn:
+          type: integer
+        createdate:
+          type: string
+        ts:
+          type: number
+          format: float
+        workername:
+          type: string
+        username:
+          type: string
+        address:
+          type: string
+        worker:
+          type: string
+        workernameAddr:
+          type: string
+        ip:
+          type: string
+        agent:
+          type: string
+        round:
+          type: string
+        file:
+          type: string
+        rejectReason:
+          type: string
+          nullable: true
+      required:
+        - workinfoid
+        - clientid
+        - diff
+        - sdiff
+        - hash
+        - result
+        - errn
+        - createdate
+        - ts
+        - workername
+        - username
+        - address
+        - worker
+        - workernameAddr
+        - ip
+        - agent
+        - round
+        - file
